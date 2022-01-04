@@ -1,7 +1,7 @@
 import "./Products.css"
 import Product from "../Product/Product";
-import productsArr from "../../Assets";
-const Products = () => (
+
+const Products = ({ productsArr }) => (
 
     <section className="Products">
         {productsArr.map(item => (
@@ -9,5 +9,6 @@ const Products = () => (
         ))}
     </section>
 )
-asda
+
+
 export default Products;
