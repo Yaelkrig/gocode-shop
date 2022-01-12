@@ -1,15 +1,12 @@
-
 import "./Header.css"
 
 
-const Header = ({ categories, selectByFilter }) => {
-
+const Header = ({ categories, selectByFilter, sort }) => {
     return (
-
         <div className="Header">
 
             <nav className="product-filter">
-                <h1>Products</h1>
+                <h1>Shop</h1>
                 <div className="sort">
                     <div className="collection-sort">
                         <label>Filter by:</label>
@@ -23,15 +20,13 @@ const Header = ({ categories, selectByFilter }) => {
 
                     <div className="collection-sort">
                         <label>Sort by:</label>
-                        <select>
-                            <option value="/">Featured</option>
-                            <option value="/">Best Selling</option>
-                            <option value="/">Alphabetically, A-Z</option>
-                            <option value="/">Alphabetically, Z-A</option>
-                            <option value="/">Price, low to high</option>
-                            <option value="/">Price, high to low</option>
-                            <option value="/">Date, new to old</option>
-                            <option value="/">Date, old to new</option>
+                        <select onChange={(e) => sort(e.target.value)}>
+                            <option value="Featured">Featured</option>
+                            <option value="Best Selling">Best Selling</option>
+                            <option value="Alphabetically, A-Z">Alphabetically, A-Z</option>
+                            <option value="Alphabetically, Z-A">Alphabetically, Z-A</option>
+                            <option value="Price, low to high">Price, low to high</option>
+                            <option value="Price, high to low">Price, high to low</option>
                         </select>
                     </div>
                 </div>
