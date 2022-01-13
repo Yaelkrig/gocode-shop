@@ -4,7 +4,7 @@ import "./Product.css"
 
 
 const Product = ({ itemDetails }) => {
-    const { addToCart } = useContext(CartContext)
+    const { addToCart, removeFromCart } = useContext(CartContext)
     let { image, title, price, id } = itemDetails;
 
     return (
@@ -14,7 +14,8 @@ const Product = ({ itemDetails }) => {
             </div>
             <button className="add" id={id}
                 onClick={(e) => { addToCart(e.target.id) }}></button>
-            <button className="remove"></button>
+            <button className="remove"
+                onClick={(e) => { removeFromCart(e.target.id) }}></button>
             <div className="product-info">
                 <h5>{title}</h5>
                 <h6>{price}$</h6>

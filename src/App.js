@@ -51,20 +51,33 @@ const App = () => {
   }
 
   const handleAddToCart = (id) => {
+    console.log(id);
     products.find(product => product.id === Number(id)).quantity++
     if (products.find(product => product.id === Number(id)).quantity === 1) {
       setCart([...cart, products.find(product => product.id === Number(id))])
     } else {
       setCart([...cart]);
     }
-
   }
+
+  const handleRemoveFromCart = (id) => {
+    console.log(id);
+    products.find(product => product.id === Number(id)).quantity--
+    if (products.find(product => product.id === Number(id)).quantity === 1) {
+      setCart([...cart])
+    } else if ((product => product.id === Number(id)).quantity === 0) {
+      return cart;
+    } else {
+      setCart(cart.filter(product => product.id !== Number(id)))
+    }
+  }
+
 
   return (
     <>
       <Header categories={categories} selectByFilter={filterByDropDown} sort={sortByDropDown} />
-      <Cart cart={cart} />
-      <CartContext.Provider value={{ addToCart: handleAddToCart }}>
+      <Cart cart={cart} addToCart={handleAddToCart} removeFromCart={handleRemoveFromCart} />
+      <CartContext.Provider value={{ addToCart: handleAddToCart, removeFromCart: handleRemoveFromCart }}>
         <Products productsArr={filterProducts} />
       </CartContext.Provider>
     </>
