@@ -28,6 +28,12 @@
     padding-top: 20px;
     text-align: center;
   }
+  .Product .product_buttons{
+display: grid;
+grid-template-columns: 0fr 6fr 1fr;
+
+  }
+  
   .Product .remove{
     background: #fff url('../../../images/minus.png') center center/cover no-repeat;
     background-size:cover;
@@ -36,7 +42,7 @@
     border: none;
     margin-top: auto;
     padding-top: 20px;
-    text-align: center;
+    text-align: right;
   }
 .Product .product-image img {
     width: 100%;

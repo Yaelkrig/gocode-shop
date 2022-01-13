@@ -5,18 +5,22 @@ import "./Product.css"
 
 const Product = ({ itemDetails }) => {
     const { addToCart, removeFromCart } = useContext(CartContext)
-    let { image, title, price, id } = itemDetails;
+
+    let { image, title, price, id, quantity } = itemDetails;
 
     return (
         <div className="Product">
             <div className="product-image">
                 <img src={image} alt={title} />
             </div>
-            <button className="add" id={id}
-                onClick={(e) => { addToCart(e.target.id) }}></button>
-            <button className="remove"
-                onClick={(e) => { removeFromCart(e.target.id) }}></button>
             <div className="product-info">
+                <div className="product_buttons">
+                    <button className="add" id={id}
+                        onClick={(e) => { addToCart(e.target.id) }}></button>
+                    <span>{quantity}</span>
+                    <button className="remove" id={id}
+                        onClick={(e) => removeFromCart(e.target.id)}></button>
+                </div>
                 <h5>{title}</h5>
                 <h6>{price}$</h6>
             </div>

@@ -31,13 +31,13 @@ const App = () => {
     console.log(sort);
 
     if (sort === 'Alphabetically, A-Z') {
-      setFilterProducts(filterProducts.sort((a, b) => a.title === b.title ? 0 : a.title < b.title ? -1 : 1))
+      setFilterProducts([...filterProducts.sort((a, b) => a.title === b.title ? 0 : a.title < b.title ? -1 : 1)])
     } else if (sort === "Alphabetically, Z-A") {
-      setFilterProducts(filterProducts.sort((a, b) => b.title === a.title ? 0 : b.title < a.title ? -1 : 1))
+      setFilterProducts([...filterProducts.sort((a, b) => b.title === a.title ? 0 : b.title < a.title ? -1 : 1)])
     } else if (sort === "Price, low to high") {
-      setFilterProducts(filterProducts.sort((a, b) => a.price - b.price))
+      setFilterProducts([...filterProducts.sort((a, b) => a.price - b.price)])
     } else if (sort === "Price, high to low") {
-      setFilterProducts(filterProducts.sort((a, b) => b.price - a.price))
+      setFilterProducts([...filterProducts.sort((a, b) => b.price - a.price)])
     }
     // console.log(filterProducts);
   }
@@ -51,7 +51,6 @@ const App = () => {
   }
 
   const handleAddToCart = (id) => {
-    console.log(id);
     products.find(product => product.id === Number(id)).quantity++
     if (products.find(product => product.id === Number(id)).quantity === 1) {
       setCart([...cart, products.find(product => product.id === Number(id))])
@@ -61,14 +60,14 @@ const App = () => {
   }
 
   const handleRemoveFromCart = (id) => {
-    console.log(id);
     products.find(product => product.id === Number(id)).quantity--
-    if (products.find(product => product.id === Number(id)).quantity === 1) {
+    console.log(products.find(product => product.id === Number(id)).quantity);
+    if (products.find(product => product.id === Number(id)).quantity > 0) {
       setCart([...cart])
-    } else if ((product => product.id === Number(id)).quantity === 0) {
-      return cart;
-    } else {
+    } else if (products.find(product => product.id === Number(id)).quantity === 0) {
       setCart(cart.filter(product => product.id !== Number(id)))
+    } else {
+      return cart;
     }
   }
 
